@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Prompt Gambar Ultimate</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for select elements to ensure consistent appearance */
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem; /* Make space for the custom arrow */
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600 p-4 font-sans text-gray-100 flex items-center justify-center">
+    <div class="bg-gray-800 bg-opacity-90 p-8 rounded-2xl shadow-xl max-w-3xl w-full">
+        <h1 class="text-4xl font-bold text-center mb-8 text-white">
+            Generator Prompt Gambar
+        </h1>
+
+        <div class="space-y-6">
+            <!-- Subjek Utama (Now includes reference image description guidance) -->
+            <div>
+                <label for="subjekUtama" class="block text-lg font-medium text-gray-300 mb-2">
+                    1. Subjek Utama (Termasuk deskripsi atau referensi visual Anda)
+                </label>
+                <textarea
+                    id="subjekUtama"
+                    rows="4"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Contoh: Seorang ksatria mengenakan zirah emas, terinspirasi dari lukisan abad pertengahan. Atau: Pemandangan kota futuristik dengan elemen arsitektur art deco."
+                ></textarea>
+            </div>
+
+            <!-- Aksi / Posisi -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    2. Aksi / Posisi
+                </label>
+                <select
+                    id="aksiPosisi"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih aksi / posisi</option>
+                </select>
+                <input
+                    type="text"
+                    id="customAksiPosisi"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan aksi/posisi kustom Anda (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Ekspresi Wajah -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    3. Ekspresi Wajah (Pilihkan)
+                </label>
+                <select
+                    id="ekspresiWajah"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih ekspresi wajah</option>
+                </select>
+                <input
+                    type="text"
+                    id="customEkspresiWajah"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan ekspresi kustom Anda (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Komposisi Kamera -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    4. Komposisi Kamera (Pilihkan)
+                </label>
+                <select
+                    id="komposisiKamera"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih komposisi kamera</option>
+                </select>
+                <input
+                    type="text"
+                    id="customKomposisiKamera"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan komposisi kustom Anda (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Lokasi / Tempat -->
+            <div>
+                <label for="lokasiTempat" class="block text-lg font-medium text-gray-300 mb-2">
+                    5. Lokasi / Tempat
+                </label>
+                <input
+                    type="text"
+                    id="lokasiTempat"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Contoh: Hutan ajaib, kota metropolitan, luar angkasa"
+                />
+            </div>
+
+            <!-- Waktu -->
+            <div>
+                <label for="waktu" class="block text-lg font-medium text-gray-300 mb-2">
+                    6. Waktu
+                </label>
+                <input
+                    type="text"
+                    id="waktu"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Contoh: Pagi hari, senja keemasan, tengah malam"
+                />
+            </div>
+
+            <!-- Background -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    7. Background (Pilihkan)
+                </label>
+                <select
+                    id="background"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih background</option>
+                </select>
+                <input
+                    type="text"
+                    id="customBackground"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan background kustom Anda (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Gaya Visual -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    8. Gaya Visual (Pilihkan)
+                </label>
+                <select
+                    id="gayaVisual"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih gaya visual</option>
+                </select>
+                <input
+                    type="text"
+                    id="customGayaVisual"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan gaya visual kustom Anda (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Pencahayaan -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    9. Pencahayaan (Pilihkan)
+                </label>
+                <select
+                    id="pencahayaan"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih pencahayaan</option>
+                </select>
+                <input
+                    type="text"
+                    id="customPencahayaan"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan pencahayaan kustom Anda (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Depth & Fokus (DOF) -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    10. Depth & Fokus (DOF) (Pilihkan)
+                </label>
+                <select
+                    id="depthFokus"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih depth & fokus</option>
+                </select>
+                <input
+                    type="text"
+                    id="customDepthFokus"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan detail fokus kustom Anda (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Palet Warna -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    11. Palet Warna (Pilihkan)
+                </label>
+                <select
+                    id="paletWarna"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih palet warna</option>
+                </select>
+                <input
+                    type="text"
+                    id="customPaletWarna"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan palet warna kustom Anda (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Atmosfer / Mood -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    12. Atmosfer / Mood (Pilihkan)
+                </label>
+                <select
+                    id="atmosferMood"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih atmosfer / mood</option>
+                </select>
+                <input
+                    type="text"
+                    id="customAtmosferMood"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan atmosfer/mood kustom Anda (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Detail Tekstur -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    13. Detail Tekstur (Pilihkan)
+                </label>
+                <select
+                    id="detailTekstur"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih detail tekstur</option>
+                </select>
+                <input
+                    type="text"
+                    id="customDetailTekstur"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan detail tekstur kustom Anda (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Kualitas Gambar / Resolusi -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    14. Kualitas Gambar / Resolusi (Pilihkan)
+                </label>
+                <select
+                    id="kualitasResolusi"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih kualitas / resolusi</option>
+                </select>
+                <input
+                    type="text"
+                    id="customKualitasResolusi"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan kualitas/resolusi kustom (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Detail Lensa / Teknik Fotografi -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    15. Detail Lensa / Teknik Fotografi (Pilihkan)
+                </label>
+                <select
+                    id="detailLensaTeknik"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih detail lensa / teknik</option>
+                </select>
+                <input
+                    type="text"
+                    id="customDetailLensaTeknik"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan detail lensa/teknik kustom (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Pengaruh Artistik / Sejarah -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    16. Pengaruh Artistik / Sejarah (Pilihkan)
+                </label>
+                <select
+                    id="pengaruhArtistikSejarah"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih pengaruh artistik / sejarah</option>
+                </select>
+                <input
+                    type="text"
+                    id="customPengaruhArtistikSejarah"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan pengaruh artistik/sejarah kustom (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Efek Cuaca / Lingkungan -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    17. Efek Cuaca / Lingkungan (Pilihkan)
+                </label>
+                <select
+                    id="efekCuacaLingkungan"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih efek cuaca / lingkungan</option>
+                </select>
+                <input
+                    type="text"
+                    id="customEfekCuacaLingkungan"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan efek cuaca/lingkungan kustom (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Rasio Gambar -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    18. Rasio Gambar (Pilihkan)
+                </label>
+                <select
+                    id="rasioGambar"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih rasio gambar</option>
+                </select>
+                <input
+                    type="text"
+                    id="customRasioGambar"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan rasio kustom Anda (contoh: 16:9, 5:4)"
+                />
+            </div>
+
+            <!-- Efek Pasca-Produksi / Filter -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    19. Efek Pasca-Produksi / Filter (Pilihkan)
+                </label>
+                <select
+                    id="efekPascaProduksi"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih efek pasca-produksi</option>
+                </select>
+                <input
+                    type="text"
+                    id="customEfekPascaProduksi"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan efek pasca-produksi kustom (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Tingkat Detail / Kompleksitas -->
+            <div>
+                <label class="block text-lg font-medium text-gray-300 mb-2">
+                    20. Tingkat Detail / Kompleksitas (Pilihkan)
+                </label>
+                <select
+                    id="tingkatDetailKompleksitas"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 text-white mb-2"
+                >
+                    <option value="">Pilih tingkat detail / kompleksitas</option>
+                </select>
+                <input
+                    type="text"
+                    id="customTingkatDetailKompleksitas"
+                    class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 text-white"
+                    placeholder="Atau masukkan tingkat detail/kompleksitas kustom (pisahkan dengan koma)"
+                />
+            </div>
+
+            <!-- Tombol Generate Prompt -->
+            <button
+                id="generatePromptBtn"
+                class="w-full bg-gradient-to-r from-blue-500 to-indigo-700 hover:from-blue-600 hover:to-indigo-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg transform hover:scale-105"
+            >
+                Generate Prompt
+            </button>
+
+            <!-- Hasil Prompt -->
+            <div id="promptResultContainer" class="mt-8 bg-gray-700 p-6 rounded-xl shadow-inner border border-gray-600 hidden">
+                <h2 class="text-2xl font-bold text-white mb-4">Prompt Gambar Anda:</h2>
+                <p id="generatedPromptText" class="whitespace-pre-wrap text-gray-200 leading-relaxed"></p>
+                <button
+                    id="copyToClipboardBtn"
+                    class="mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200 shadow-md"
+                >
+                    Salin Prompt
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Options data (same as in React component)
+        const aksiPosisiOptions = [
+            'Berdiri tegak', 'Duduk santai', 'Berlari', 'Melompat', 'Berbaring',
+            'Memegang sesuatu', 'Berinteraksi dengan objek/lingkungan', 'Bergerak dinamis', 'Diam dan merenung',
+            'Menari', 'Memasak', 'Membaca', 'Bermain alat musik', 'Bertarung',
+            'Berpelukan', 'Berciuman', 'Berdiskusi', 'Bekerja', 'Menjelajahi', 'Bersantai', 'Merangkak', 'Berlutut'
+        ];
+
+        const ekspresiWajahOptions = [
+            'Bahagia', 'Sedih', 'Marah', 'Bingung', 'Terkejut', 'Tenang',
+            'Bersemangat', 'Khawatir', 'Netral', 'Misterius', 'Gembira',
+            'Antusias', 'Skeptis', 'Curiga', 'Puas', 'Frustrasi', 'Cemas',
+            'Ngeri', 'Nakal', 'Bangga', 'Pasrah', 'Bertekad', 'Jijik', 'Kagum', 'Malu', 'Kecewa', 'Terpesona'
+        ];
+
+        const komposisiKameraOptions = [
+            'Close-up (Wajah/Detail)', 'Medium Shot (Setengah badan)', 'Full Shot (Seluruh tubuh)',
+            'Long Shot (Subjek kecil di lingkungan luas)', 'Extreme Long Shot (Pemandangan)',
+            'Dutch Angle (Sudut miring)', 'Bird\'s Eye View (Dari atas)', 'Worm\'s Eye View (Dari bawah)',
+            'Rule of Thirds', 'Symmetrical Composition', 'POV (Point of View)', 'Over-the-shoulder shot',
+            'Tracking shot', 'Zoom Shot', 'Pan Shot', 'Tilt Shot', 'Low Angle', 'High Angle',
+            'Leading Lines', 'Framing', 'Negative Space', 'Golden Ratio', 'Wide Angle', 'Telephoto'
+        ];
+
+        const gayaVisualOptions = [
+            'Realistis', 'Fotografi (Hyperrealism)', 'Lukisan Cat Minyak', 'Cat Air',
+            'Sketsa Pensil', 'Ilustrasi Digital', 'Pixel Art', 'Gaya Kartun (Anime)',
+            'Vaporwave', 'Cyberpunk', 'Steampunk', 'Fantasi', 'Fiksi Ilmiah', 'Minimalis',
+            'Aesthetic Grunge', 'Dokumenter', 'Gaya Komik', 'Gothic', 'Art Deco', 'Baroque',
+            'Surrealisme', 'Impresionisme', 'Pop Art', 'Abstrak Geometris', 'Ukiyo-e', 'Art Nouveau',
+            'Digital Painting', '3D Render', 'Low Poly', 'Macro Photography', 'Tilt-Shift Photography',
+            'Double Exposure', 'Glitch Art', 'Line Art', 'Pencil Drawing', 'Charcoal Drawing',
+            'Street Photography', 'Portrait Photography', 'Landscape Photography', 'Abstract Photography'
+        ];
+
+        const pencahayaanOptions = [
+            'Cahaya Alami', 'Cahaya Lembut (Softbox)', 'Cahaya Keras (Direct Flash)',
+            'Backlight (Siluet)', 'Rim Light (Garis tepi)', 'Volumetric Lighting (God rays)',
+            'Low Key (Dramatis)', 'High Key (Cerah)', 'Neon Lights', 'Golden Hour', 'Blue Hour',
+            'Studio Lighting', 'Dramatic Lighting', 'Cinematic Lighting', 'Sun-drenched', 'Moonlight',
+            'Candlelight', 'Firelight', 'Spotlight', 'Ambient Lighting', 'Overhead Lighting',
+            'Underlighting', 'Gloomy Lighting', 'Bright and Airy', 'Contrasting Lights', 'Soft Glow'
+        ];
+
+        const depthFokusOptions = [
+            'Shallow Depth of Field (Bokeh, latar blur)', 'Deep Depth of Field (Semua fokus)',
+            'Macro (Detail sangat dekat)', 'Tilt-Shift (Efek miniatur)',
+            'Rack Focus (Pergeseran fokus)', 'Soft Focus', 'Pin Sharp Focus (Sangat tajam)',
+            'Foreground Focus', 'Background Focus', 'Hyperfocal Distance', 'Pan Focus'
+        ];
+
+        const paletWarnaOptions = [
+            'Monokrom (Hitam Putih)', 'Sepia', 'Pastel', 'Cerah (Vibrant)',
+            'Gelap & Suram', 'Hangat (Dominan Merah/Kuning)', 'Dingin (Dominan Biru/Hijau)',
+            'Komplementer (Kontras)', 'Analogous (Harmonis)', 'Triadic (Tiga warna seimbang)',
+            'Split Complementary', 'Dominan Satu Warna', 'Muted Tones (Warna kalem)', 'Earthy Tones (Warna tanah)',
+            'Pop of Color', 'Grayscale with a hint of color', 'Metallic Colors', 'Iridescent Colors',
+            'Fluorescent Colors', 'Vivid', 'Desaturated', 'Monochromatic', 'Polychromatic'
+        ];
+
+        const atmosferMoodOptions = [
+            'Tenang & Damai', 'Misterius & Gelap', 'Ceria & Energik', 'Sedih & Melankolis',
+            'Epik & Megah', 'Surreal & Magis', 'Modern & Minimalis', 'Vintage & Nostalgis', 'Menegangkan',
+            'Menyenangkan', 'Seram', 'Penuh Harapan', 'Mencekam', 'Eksotis', 'Industrial',
+            'Futuristik', 'Dystopian', 'Utopian', 'Kacau', 'Harmonis', 'Intim', 'Mewah',
+            'Sederhana', 'Aesthetic', 'Gritty', 'Whimsical', 'Triumph', 'Despair', 'Nostalgia', 'Joyful'
+        ];
+
+        const detailTeksturOptions = [
+            'Halus (Smooth)', 'Kasar (Rough)', 'Mengkilap (Glossy)', 'Doff (Matte)',
+            'Berbulu (Furry)', 'Berkarat (Rusty)', 'Basah (Wet)', 'Kering (Dry)',
+            'Berkilau (Sparkling)', 'Transparan', 'Berpasir', 'Berminyak',
+            'Licin', 'Berkerut', 'Berlubang', 'Bersisik', 'Berotot', 'Berdebu',
+            'Kristal', 'Mosaik', 'Anyaman', 'Rajutan', 'Sutra', 'Kulit', 'Kayu',
+            'Batu', 'Logam', 'Kaca', 'Air mengalir', 'Asap', 'Kabut', 'Retakan',
+            'Pecahan', 'Pudar', 'Bersih', 'Kotor', 'Granular', 'Cracked', 'Smooth', 'Rough'
+        ];
+
+        const kualitasResolusiOptions = [
+            'Sangat Detail', 'Realistis', 'Resolusi Tinggi (8K)', 'Resolusi Rendah (Pixelated)',
+            'Fotorealistik', 'Tajam', 'Blurry', 'Grainy', 'Distorted', 'Vivid Quality', 'Dreamlike Quality'
+        ];
+
+        const detailLensaTeknikOptions = [
+            'Wide Angle', 'Telephoto', 'Macro Lens', 'Fisheye Lens', 'Prime Lens',
+            'Zoom Lens', 'Tilt-Shift Lens', 'Low Aperture (f/1.8)', 'High Aperture (f/16)',
+            'Fast Shutter Speed', 'Slow Shutter Speed (Motion Blur)', 'Long Exposure',
+            'Double Exposure', 'Panini Projection', 'Orthographic', 'Isometric', 'Anamorphic', 'Bokeh Effect'
+        ];
+
+        const pengaruhArtistikSejarahOptions = [
+            'Rembrandt Lighting', 'Caravaggio Style', 'Van Gogh Starry Night', 'Monet Impressionism',
+            'Picasso Cubism', 'Dali Surrealism', 'Frida Kahlo Style', 'Leonardo da Vinci Renaissance',
+            'Baroque Painting', 'Rococo Art', 'Neoclassical', 'Romanticism', 'Pre-Raphaelite',
+            'Art Nouveau', 'Bauhaus', 'Pop Art', 'Abstract Expressionism', 'Minimalism Art',
+            'Ancient Egyptian Art', 'Greek Mythology Art', 'Roman Empire Art', 'Medieval Art',
+            'Victorian Era', 'Art Deco Era', '1980s Aesthetic', 'Film Noir', 'Cyberpunk Aesthetic',
+            'Gothic Architecture', 'Japanese Ukiyo-e', 'Chinese Ink Wash Painting', 'Indian Miniature Painting',
+            'African Tribal Art', 'Indigenous Art'
+        ];
+
+        const efekCuacaLingkunganOptions = [
+            'Hujan', 'Salju', 'Kabut Tebal', 'Asap', 'Angin Kencang',
+            'Badai Petir', 'Awan Dramatis', 'Langit Cerah', 'Pelangi', 'Debu',
+            'Banjir', 'Beku Es', 'Gurun Pasir', 'Hutan Lebat', 'Gunung Bersalju',
+            'Lautan Bergelombang', 'Danau Tenang', 'Malam Berbintang', 'Aurora Borealis',
+            'Gerhana', 'Matahari Terbit', 'Matahari Terbenam', 'Cahaya Bulan', 'Terik Panas'
+        ];
+
+        const rasioGambarOptions = [
+            '1:1 (Persegi)', '16:9 (Lanskap Lebar)', '9:16 (Potret Tinggi)',
+            '4:3 (Klasik)', '3:2 (Fotografi DSLR)', '21:9 (Ultrawide Cinematic)', '2:3 (Potret Standar)'
+        ];
+
+        const efekPascaProduksiOptions = [
+            'Vignette', 'Film Grain', 'Chromatic Aberration', 'Bloom/Glow',
+            'Lens Flare', 'Dust Particles', 'Smoke Effects', 'Mist/Fog',
+            'Depth Haze', 'Color Grading (Cinematic)', 'Color Grading (Vintage)',
+            'Color Grading (Vibrant)', 'Color Grading (Desaturated)', 'HDR Effect',
+            'Sharpening', 'Soft Focus Filter', 'Dreamy Blur', 'Noise Reduction', 'Distortion'
+        ];
+
+        const tingkatDetailKompleksitasOptions = [
+            'Sangat Detail', 'Rumit', 'Minimalis', 'Sederhana',
+            'Berantakan/Kacau', 'Bersih', 'Intricate', 'Sparse',
+            'Highly Textured', 'Smooth Surfaces', 'Complex Scene', 'Simple Composition'
+        ];
+
+        const backgroundOptions = [
+            'Latar belakang polos', 'Latar belakang blur (bokeh)', 'Dinding bata', 'Hutan lebat',
+            'Langit berbintang', 'Kota di malam hari', 'Pegunungan bersalju', 'Pantai berpasir',
+            'Interior rumah klasik', 'Interior futuristik', 'Ruang kosong', 'Jalanan kota yang ramai',
+            'Awan dramatis', 'Latar abstrak', 'Kabut/Asap', 'Air terjun', 'Gurun', 'Ruang angkasa'
+        ];
+
+        // Function to populate dropdowns
+        function populateDropdown(selectElementId, optionsArray) {
+            const selectElement = document.getElementById(selectElementId);
+            optionsArray.forEach(optionText => {
+                const option = document.createElement('option');
+                option.value = optionText;
+                option.textContent = optionText;
+                selectElement.appendChild(option);
+            });
+        }
+
+        // Helper to combine selected options and custom input
+        function combineOptionsAndCustom(selectedOption, customInput) {
+            let combined = [];
+            if (selectedOption && selectedOption !== 'Pilih...') {
+                combined.push(selectedOption);
+            }
+            if (customInput && customInput.trim() !== '') {
+                const customParts = customInput.split(',').map(part => part.trim()).filter(part => part !== '');
+                combined = [...combined, ...customParts];
+            }
+            return combined;
+        }
+
+        // Function to generate the narrative prompt
+        function generatePrompt() {
+            let promptParts = [];
+            let mainSubjectSentence = '';
+
+            // Get values from DOM elements
+            const subjekUtama = document.getElementById('subjekUtama').value;
+            const aksiPosisi = document.getElementById('aksiPosisi').value;
+            const customAksiPosisi = document.getElementById('customAksiPosisi').value;
+            const ekspresiWajah = document.getElementById('ekspresiWajah').value;
+            const customEkspresiWajah = document.getElementById('customEkspresiWajah').value;
+            const komposisiKamera = document.getElementById('komposisiKamera').value;
+            const customKomposisiKamera = document.getElementById('customKomposisiKamera').value;
+            const lokasiTempat = document.getElementById('lokasiTempat').value;
+            const waktu = document.getElementById('waktu').value;
+            const background = document.getElementById('background').value;
+            const customBackground = document.getElementById('customBackground').value;
+            const gayaVisual = document.getElementById('gayaVisual').value;
+            const customGayaVisual = document.getElementById('customGayaVisual').value;
+            const pencahayaan = document.getElementById('pencahayaan').value;
+            const customPencahayaan = document.getElementById('customPencahayaan').value;
+            const depthFokus = document.getElementById('depthFokus').value;
+            const customDepthFokus = document.getElementById('customDepthFokus').value;
+            const paletWarna = document.getElementById('paletWarna').value;
+            const customPaletWarna = document.getElementById('customPaletWarna').value;
+            const atmosferMood = document.getElementById('atmosferMood').value;
+            const customAtmosferMood = document.getElementById('customAtmosferMood').value;
+            const detailTekstur = document.getElementById('detailTekstur').value;
+            const customDetailTekstur = document.getElementById('customDetailTekstur').value;
+            const kualitasResolusi = document.getElementById('kualitasResolusi').value;
+            const customKualitasResolusi = document.getElementById('customKualitasResolusi').value;
+            const detailLensaTeknik = document.getElementById('detailLensaTeknik').value;
+            const customDetailLensaTeknik = document.getElementById('customDetailLensaTeknik').value;
+            const pengaruhArtistikSejarah = document.getElementById('pengaruhArtistikSejarah').value;
+            const customPengaruhArtistikSejarah = document.getElementById('customPengaruhArtistikSejarah').value;
+            const efekCuacaLingkungan = document.getElementById('efekCuacaLingkungan').value;
+            const customEfekCuacaLingkungan = document.getElementById('customEfekCuacaLingkungan').value;
+            const rasioGambar = document.getElementById('rasioGambar').value;
+            const customRasioGambar = document.getElementById('customRasioGambar').value;
+            const efekPascaProduksi = document.getElementById('efekPascaProduksi').value;
+            const customEfekPascaProduksi = document.getElementById('customEfekPascaProduksi').value;
+            const tingkatDetailKompleksitas = document.getElementById('tingkatDetailKompleksitas').value;
+            const customTingkatDetailKompleksitas = document.getElementById('customTingkatDetailKompleksitas').value;
+
+
+            // Section 1: Core Subject, Action, Expression, Location, Time
+            if (subjekUtama) {
+                mainSubjectSentence += `${subjekUtama}`;
+
+                const allAksiPosisi = combineOptionsAndCustom(aksiPosisi, customAksiPosisi);
+                if (allAksiPosisi.length > 0) {
+                    mainSubjectSentence += `, ${allAksiPosisi.join(' dan ')}`;
+                }
+
+                const allEkspresiWajah = combineOptionsAndCustom(ekspresiWajah, customEkspresiWajah);
+                if (allEkspresiWajah.length > 0) {
+                    mainSubjectSentence += ` dengan ekspresi wajah ${allEkspresiWajah.join(', ')}`;
+                }
+                if (lokasiTempat) {
+                    mainSubjectSentence += ` di ${lokasiTempat}`;
+                }
+                if (waktu) {
+                    mainSubjectSentence += ` pada ${waktu}`;
+                }
+                mainSubjectSentence += '.';
+                promptParts.push(mainSubjectSentence);
+            } else if (lokasiTempat || waktu) {
+                mainSubjectSentence += `Sebuah pemandangan`;
+                if (lokasiTempat) mainSubjectSentence += ` di ${lokasiTempat}`;
+                if (waktu) mainSubjectSentence += ` pada ${waktu}`;
+                mainSubjectSentence += '.';
+                promptParts.push(mainSubjectSentence);
+            }
+
+            // Section 2: Background, Camera Composition and Visual Style
+            let visualSettingSentence = '';
+            const allBackground = combineOptionsAndCustom(background, customBackground);
+            if (allBackground.length > 0) {
+                visualSettingSentence += `Dengan latar belakang ${allBackground.join(', ')}`;
+            }
+
+            const allKomposisiKamera = combineOptionsAndCustom(komposisiKamera, customKomposisiKamera);
+            if (allKomposisiKamera.length > 0) {
+                if (visualSettingSentence) visualSettingSentence += `, diambil dengan komposisi ${allKomposisiKamera.join(' dan ')}`;
+                else visualSettingSentence += `Diambil dengan komposisi ${allKomposisiKamera.join(' dan ')}`;
+            }
+
+            const allGayaVisual = combineOptionsAndCustom(gayaVisual, customGayaVisual);
+            if (allGayaVisual.length > 0) {
+                if (visualSettingSentence) visualSettingSentence += `, dengan gaya visual ${allGayaVisual.join(', ')}`;
+                else visualSettingSentence += `Gaya visual ${allGayaVisual.join(', ')}`;
+            }
+            if (visualSettingSentence) {
+                visualSettingSentence += '.';
+                promptParts.push(visualSettingSentence);
+            }
+
+            // Section 3: Lighting, Depth & Fokus, Color Palette, Kualitas/Resolusi, Lensa/Teknik
+            let technicalVisualSentence = '';
+            const allPencahayaan = combineOptionsAndCustom(pencahayaan, customPencahayaan);
+            if (allPencahayaan.length > 0) {
+                technicalVisualSentence += `Pencahayaan yang dominan adalah ${allPencahayaan.join(', ')}`;
+            }
+
+            const allDepthFokus = combineOptionsAndCustom(depthFokus, customDepthFokus);
+            if (allDepthFokus.length > 0) {
+                if (technicalVisualSentence) technicalVisualSentence += `, dengan fokus ${allDepthFokus.join(', ')}`;
+                else technicalVisualSentence += `Fokus gambar adalah ${allDepthFokus.join(', ')}`;
+            }
+
+            const allPaletWarna = combineOptionsAndCustom(paletWarna, customPaletWarna);
+            if (allPaletWarna.length > 0) {
+                if (technicalVisualSentence) technicalVisualSentence += `, dan palet warna ${allPaletWarna.join(', ')}`;
+                else technicalVisualSentence += `Palet warna yang digunakan adalah ${allPaletWarna.join(', ')}`;
+            }
+
+            const allKualitasResolusi = combineOptionsAndCustom(kualitasResolusi, customKualitasResolusi);
+            if (allKualitasResolusi.length > 0) {
+                if (technicalVisualSentence) technicalVisualSentence += `, dengan kualitas gambar ${allKualitasResolusi.join(', ')}`;
+                else technicalVisualSentence += `Kualitas gambar ${allKualitasResolusi.join(', ')}`;
+            }
+
+            const allDetailLensaTeknik = combineOptionsAndCustom(detailLensaTeknik, customDetailLensaTeknik);
+            if (allDetailLensaTeknik.length > 0) {
+                if (technicalVisualSentence) technicalVisualSentence += `, difoto menggunakan ${allDetailLensaTeknik.join(', ')}`;
+                else technicalVisualSentence += `Difoto menggunakan ${allDetailLensaTeknik.join(', ')}`;
+            }
+
+            if (technicalVisualSentence) {
+                technicalVisualSentence += '.';
+                promptParts.push(technicalVisualSentence);
+            }
+
+            // Section 4: Atmosphere/Mood and Texture Details, Artistic Influence, Weather/Environment, Post-production, Detail Level
+            let detailSentence = '';
+            const allAtmosferMood = combineOptionsAndCustom(atmosferMood, customAtmosferMood);
+            if (allAtmosferMood.length > 0) {
+                detailSentence += `Menciptakan suasana ${allAtmosferMood.join(' dan ')}`;
+            }
+
+            const allDetailTekstur = combineOptionsAndCustom(detailTekstur, customDetailTekstur);
+            if (allDetailTekstur.length > 0) {
+                if (detailSentence) detailSentence += `, dengan detail tekstur ${allDetailTekstur.join(', ')}`;
+                else detailSentence += `Detail tekstur yang menonjol adalah ${allDetailTekstur.join(', ')}`;
+            }
+
+            const allPengaruhArtistikSejarah = combineOptionsAndCustom(pengaruhArtistikSejarah, customPengaruhArtistikSejarah);
+            if (allPengaruhArtistikSejarah.length > 0) {
+                if (detailSentence) detailSentence += `, terinspirasi oleh ${allPengaruhArtistikSejarah.join(', ')}`;
+                else detailSentence += `Terinspirasi oleh ${allPengaruhArtistikSejarah.join(', ')}`;
+            }
+
+            const allEfekCuacaLingkungan = combineOptionsAndCustom(efekCuacaLingkungan, customEfekCuacaLingkungan);
+            if (allEfekCuacaLingkungan.length > 0) {
+                if (detailSentence) detailSentence += `, latar belakang diwarnai oleh ${allEfekCuacaLingkungan.join(', ')}`;
+                else detailSentence += `Latar belakang diwarnai oleh ${allEfekCuacaLingkungan.join(', ')}`;
+            }
+
+            const allEfekPascaProduksi = combineOptionsAndCustom(efekPascaProduksi, customEfekPascaProduksi);
+            if (allEfekPascaProduksi.length > 0) {
+                if (detailSentence) detailSentence += `, dengan efek pasca-produksi ${allEfekPascaProduksi.join(', ')}`;
+                else detailSentence += `Dengan efek pasca-produksi ${allEfekPascaProduksi.join(', ')}`;
+            }
+
+            const allTingkatDetailKompleksitas = combineOptionsAndCustom(tingkatDetailKompleksitas, customTingkatDetailKompleksitas);
+            if (allTingkatDetailKompleksitas.length > 0) {
+                if (detailSentence) detailSentence += `, dan tingkat detail ${allTingkatDetailKompleksitas.join(', ')}`;
+                else detailSentence += `Tingkat detail gambar adalah ${allTingkatDetailKompleksitas.join(', ')}`;
+            }
+
+            if (detailSentence) {
+                detailSentence += '.';
+                promptParts.push(detailSentence);
+            }
+
+            // Section 5: Image Ratio
+            let ratioSentence = '';
+            const allRasioGambar = combineOptionsAndCustom(rasioGambar, customRasioGambar);
+            if (allRasioGambar.length > 0) {
+                ratioSentence += `Gambar memiliki rasio ${allRasioGambar.join(' atau ')}.`;
+                promptParts.push(ratioSentence);
+            }
+
+            const finalPrompt = promptParts.join('\n\n');
+            document.getElementById('generatedPromptText').innerText = finalPrompt;
+            document.getElementById('promptResultContainer').classList.remove('hidden');
+        }
+
+        // Function to copy the prompt to clipboard
+        function copyToClipboard() {
+            const promptText = document.getElementById('generatedPromptText').innerText;
+            if (promptText) {
+                const el = document.createElement('textarea');
+                el.value = promptText;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                alert('Prompt berhasil disalin ke clipboard!');
+            }
+        }
+
+        // Event listener for Generate Prompt button
+        document.addEventListener('DOMContentLoaded', () => {
+            // Populate all dropdowns on load
+            populateDropdown('aksiPosisi', aksiPosisiOptions);
+            populateDropdown('ekspresiWajah', ekspresiWajahOptions);
+            populateDropdown('komposisiKamera', komposisiKameraOptions);
+            populateDropdown('background', backgroundOptions); // New background dropdown
+            populateDropdown('gayaVisual', gayaVisualOptions);
+            populateDropdown('pencahayaan', pencahayaanOptions);
+            populateDropdown('depthFokus', depthFokusOptions);
+            populateDropdown('paletWarna', paletWarnaOptions);
+            populateDropdown('atmosferMood', atmosferMoodOptions);
+            populateDropdown('detailTekstur', detailTeksturOptions);
+            populateDropdown('kualitasResolusi', kualitasResolusiOptions);
+            populateDropdown('detailLensaTeknik', detailLensaTeknikOptions);
+            populateDropdown('pengaruhArtistikSejarah', pengaruhArtistikSejarahOptions);
+            populateDropdown('efekCuacaLingkungan', efekCuacaLingkunganOptions);
+            populateDropdown('rasioGambar', rasioGambarOptions);
+            populateDropdown('efekPascaProduksi', efekPascaProduksiOptions);
+            populateDropdown('tingkatDetailKompleksitas', tingkatDetailKompleksitasOptions);
+
+
+            document.getElementById('generatePromptBtn').addEventListener('click', generatePrompt);
+            document.getElementById('copyToClipboardBtn').addEventListener('click', copyToClipboard);
+        });
+    </script>
+</body>
+</html>
